@@ -3,3 +3,4 @@ Un hacker de PersonalOS sabe que el mundo físico es solo una interfaz. Lo que o
 PersonalOS: El Palacio de los Bits v1.0
 Este no es un sistema operativo. Es una arquitectura mental proyectada en código Bash.
 Contiene:# PersonalOS-
+
