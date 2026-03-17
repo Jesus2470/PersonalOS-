@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Sonoro Mobile</title>
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --panel-color: #2d2d2d;
+            --accent-color: #ffd700;
+            --text-color: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        #header {
+            width: 100%;
+            background: var(--panel-color);
+            padding: 10px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            font-weight: bold;
+        }
+
+        #canvas-container {
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(30, 12px); /* Ancho reducido para móvil */
+            grid-template-rows: repeat(20, 15px);
+            background: black;
+            border: 1px solid #444;
+            cursor: crosshair;
+        }
+
+        .cell {
+            width: 12px;
+            height: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        #controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            background: var(--panel-color);
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+
+        button, select {
+            padding: 10px;
+            background: #444;
+            color: white;
+            border: 1px solid var(--accent-color);
+            border-radius: 5px;
+            font-family: monospace;
+        }
+
+        .active-tool {
+            background: var(--accent-color);
+            color: black;
+        }
+
+        input[type="color"] {
+            width: 40px;
+            height: 40px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">🎨 CANVAS SONORO MOBILE</div>
+
+<div id="canvas-container"></div>
+
+<div id="controls">
+    <input type="color" id="colorPicker" value="#00ff00">
+    <select id="charPicker">
+        <option value="█">█ Sólido</option>
+        <option value="░">░ Claro</option>
+        <option value="★">★ Estrella</option>
+        <option value="●">● Círculo</option>
+        <option value="@">@ Arroba</option>
+    </select>
+    <button onclick="clearCanvas()">Limpiar</button>
+    <div style="width: 100%; text-align: center; font-size: 0.8em;">
+        🎵 <input type="file" id="musicUpload" accept="audio/*" style="display:none">
+        <button onclick="document.getElementById('musicUpload').click()">Cargar Música</button>
+        <audio id="player" controls style="height: 30px; vertical-align: middle;"></audio>
+    </div>
+</div>
+
+<script>
+    const ANCHO = 30;
+    const ALTO = 20;
+    const container = document.getElementById('canvas-container');
+    const colorPicker = document.getElementById('colorPicker');
+    const charPicker = document.getElementById('charPicker');
+    const player = document.getElementById('player');
+    const musicUpload = document.getElementById('musicUpload');
+
+    // Inicializar Canvas
+    function initCanvas() {
+        container.innerHTML = '';
+        for (let i = 0; i < ANCHO * ALTO; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.innerHTML = '&nbsp;';
+            cell.dataset.index = i;
+            
+            // Evento para pintar (táctil y mouse)
+            const paint = (e) => {
+                if (e.buttons === 1 || e.type === 'touchstart') {
+                    cell.innerText = charPicker.value;
+                    cell.style.color = colorPicker.value;
+                }
+            };
+
+            cell.addEventListener('mousedown', paint);
+            cell.addEventListener('mouseover', paint);
+            cell.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                cell.innerText = charPicker.value;
+                cell.style.color = colorPicker.value;
+            });
+
+            container.appendChild(cell);
+        }
+    }
+
+    function clearCanvas() {
+        if(confirm("¿Limpiar obra?")) initCanvas();
+    }
+
+    // Manejo de Música
+    musicUpload.addEventListener('change', function(){
+        const files = this.files;
+        if (files.length > 0) {
+            const url = URL.createObjectURL(files[0]);
+            player.src = url;
+            player.play();
+        }
+    });
+
+    initCanvas();
+</script>
+</body>
+</html>
