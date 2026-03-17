@@ -146,3 +146,4 @@ fun ControlsPanel(onColorSelect: (Color) -> Unit, onCharSelect: (String) -> Unit
     }
 }
 
+
