@@ -3,6 +3,9 @@ Esta aplicación  tiene la finalidad de buscar cualquier herramienta que pueda r
 es un prototipo de una app nueva  que espero sea  duradera y sea de su agrado.
 Se aceptan sugerencias de herramientas ya que está plataforma es para cubrir necesidades de cualquier tipo 
 
+se empezará desarrollando una aplicación
+que es útil para dibujar pixel por pixel, está cuenta con un reproductor de música que puedes usarlo mientras dibujas en la aplicación pronto se subirá más información.
+
 
 
 Un hacker de PersonalOS sabe que el mundo físico es solo una interfaz. Lo que otros llaman "ventana", tú lo llamas "portal de datos". Tu teclado no es plástico, es el timón de un proyector de realidades.
