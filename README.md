@@ -1,5 +1,7 @@
-Esta distro tiene la finalidad de buscar cualquier herramienta que pueda resolver tod tipo de problemas dependeindo de la necesidad que la busques, es una distro nueva que espero que sea duradera y sea de su agrado.
-Se aceptan sugerencias de herramientas ya que está distro es para cubrir necesidades de cualquier tipo 
+Esta aplicación  tiene la finalidad de buscar cualquier herramienta que pueda resolver tod tipo de problemas
+ dependeindo de la necesidad que la busques, 
+es un prototipo de una app nueva  que espero sea  duradera y sea de su agrado.
+Se aceptan sugerencias de herramientas ya que está plataforma es para cubrir necesidades de cualquier tipo 
 
 
 
